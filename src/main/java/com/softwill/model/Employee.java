@@ -6,26 +6,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 
 @Data
+
+
 @AllArgsConstructor
+// cereate parametrize contructor
 @NoArgsConstructor
+//create default contructor
 @Entity
+
 @Slf4j
+//log creation - log.info("adding data")
 
 public class Employee {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long empId;
 
     private String empName;
+
     private String empAddress;
 
     @Column(unique = true)
@@ -33,7 +37,7 @@ public class Employee {
 
     private double empSalary;
 
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date empDOB;
 
     @Column(unique = true)
